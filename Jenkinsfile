@@ -1,22 +1,15 @@
 pipeline{
-agent any
-stages{
-  stage("CodeCheckout"){
-    steps{
-      git 'https://github.com/Navya-2020/react-js-quick-food-delivery-website.git'
-      
-    }
-  }
-stage('Build'){
-steps{
-echo 'Building'
-sh 'npm install'
-sh 'npm run build'
-}
-}
-stages('Test'){
-echo 'Testing'
-sh 'npm test'
-}
-}
+  stages {
+         stage ('Checkout SCM'){
+                    git branch: 'master',url: 'https://github.com/Navya-2020/react-js-quick-food-delivery-website.git'
+         }
+         
+         stage('Install node modules'){
+                      bat "npm install"
+         }
+         stage('Build'){
+                     bat "npm run build"
+         }
+        
+     }
 }
