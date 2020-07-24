@@ -10,6 +10,9 @@ pipeline{
          stage('Build'){
                      bat "npm run build"
          }
+    
+ 
+    
         
      }
 }
