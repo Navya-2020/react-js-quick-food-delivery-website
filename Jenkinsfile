@@ -6,6 +6,11 @@ pipeline{
                     git branch: 'master',url: 'https://github.com/Navya-2020/react-js-quick-food-delivery-website.git'
            }
          }
+      stage('npm install'){
+           steps{
+                     bat "npm install"
+           }
+         }
             stage('Build'){
            steps{
                      bat "npm run build"
