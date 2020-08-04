@@ -8,12 +8,14 @@ pipeline{
          }
       stage('npm install'){
            steps{
-                    sh label: '', script: ' npm install'
+                   bat label: '', script: '''npm install
+'''
            }
          }
             stage('Build'){
            steps{
-                    sh label: '', script: 'npm run build'
+                   bat label: '', script: '''npm run build
+'''
            }
          }
           }
