@@ -11,8 +11,7 @@ pipeline{
              
           
                   sh label: '', script: '''
-                  npm i -g 
-                  npm-check-updates -y
+                  npm i -g npm-check-updates -y
                    ncu -u 
                   npm install
 '''
