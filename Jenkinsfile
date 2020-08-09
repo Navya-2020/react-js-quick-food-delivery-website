@@ -9,6 +9,7 @@ pipeline{
       stage('npm install'){
            steps{
              apt-get install npm -y
+           }
 
                 npm i -g npm-check-updates -y
                 ncu -u 
