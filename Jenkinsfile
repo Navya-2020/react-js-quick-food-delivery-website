@@ -29,17 +29,18 @@ pipeline{
 '''
            }
          }
-     stage("Build image") {
+ 
+     stage('Build image') {
             steps {
                 script {
-                   dockerImage= docker.build("navyadn/hello:${env.BUILD_ID}")
+                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
           }
 }
-     stage("Push image") {
+     stage('Push image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                    docker.withRegistry('', 'dockerhub') {
                            dockerImage.push("latest")
                             dockerImage.push("${env.BUILD_ID}")
                     }
