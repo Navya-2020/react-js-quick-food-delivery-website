@@ -1,5 +1,10 @@
 pipeline{
   agent any
+    environment {
+       registry = "navyadn/react-quick-food"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }
   stages {
          stage ('Checkout SCM'){
            steps{
@@ -17,13 +22,29 @@ pipeline{
 '''
            }
          }
-            stage('Build'){
+           
+    stage('Build'){
            steps{
                   sh label: '', script: '''npm run build
 '''
            }
          }
+     stage("Build image") {
+            steps {
+                script {
+                   dockerImage= docker.build("navyadn/hello:${env.BUILD_ID}")
+                }
           }
 }
+     stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                           dockerImage.push("latest")
+                            dockerImage.push("${env.BUILD_ID}")
+                    }
+                }
+            }
 
-
+  }
+}
