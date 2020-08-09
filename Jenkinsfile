@@ -8,16 +8,7 @@ pipeline{
          }
       stage('npm install'){
            steps{
-             apt-get install npm -y
-           }
-
-                npm i -g npm-check-updates -y
-                ncu -u 
-
-                sudo apt-get update   -y              
-                
-                sudo npm install -y
-                sudo npm run build
+          
                   sh label: '', script: '''npm install
 '''
            }
