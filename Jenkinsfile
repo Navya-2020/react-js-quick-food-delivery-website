@@ -46,12 +46,14 @@ pipeline{
               dockerImage.push('latest')
           }
         }
-      }
-    }
+      
+    
     stage ('Deploy to Dev') {
       steps{
         echo "Deploying to Dev Environment"
         sh "docker rm -f react-quick-food11 || true"
         sh "docker run -d --name=react-quick-food11 -p 3000:3000 navyadn/react-quick-food
+      }
+    }
 }
 }
